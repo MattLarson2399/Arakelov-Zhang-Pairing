@@ -55,7 +55,10 @@ def average_height_roots(f):
         scalar = f.leading_coefficient()/f.content()
     else:
         f = f*f.denominator()
-        scalar = f.leading_coefficient()
+        if (f.leading_coefficient() > 0):
+            scalar = f.leading_coefficient()
+        else:
+            scalar = -f.leading_coefficient()
     roots = f.complex_roots()
     height = 0
     height += float(log(scalar))
@@ -67,7 +70,7 @@ def average_height_roots(f):
 
 
 
-#computers average height of the kth preimages up to n
+#computes average height of the kth preimages up to n
 #computes canonical height
 #allows non-zero basepoint
 #this is equal to pairing with x^2
@@ -82,7 +85,7 @@ def average_compare_basepoint(f, n, b):
 
 
 
-#f should be gives as a polynomial, g should be gives as a homogenous thing
+#f should be gives as a polynomial, g should be gives as a homogenous function
 #computes the nth term in the limit theorem for AZ pairing
 #my algorithm uses the formula as average over points of small height
 #chooses a point p, looks at preimages of p under f, computer canonical height with respect to g
